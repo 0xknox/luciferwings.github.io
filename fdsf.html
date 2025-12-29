@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>— Nothing to See —</title>
+  <style>
+    :root{
+      --bg:#0b0f12;
+      --glass: rgba(255,255,255,0.03);
+      --accent: #79ffd4;
+      --muted: #94a3b8;
+    }
+    html,body{height:100%;margin:0;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;background:radial-gradient(ellipse at 20% 20%, rgba(121,255,212,0.03), transparent 10%), radial-gradient(ellipse at 80% 80%, rgba(148,163,184,0.02), transparent 10%), var(--bg);color:#cbd5e1}
+    .stage{height:100%;display:flex;align-items:center;justify-content:center;backdrop-filter: blur(2px)}
+    .card{
+      width:min(880px,92%);
+      padding:42px 48px;
+      border-radius:20px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: 0 8px 40px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+      border:1px solid rgba(121,255,212,0.06);
+      position:relative;overflow:hidden;
+    }
+    .glow{
+      position:absolute;inset:-20%;pointer-events:none;filter:blur(60px);
+      background: conic-gradient(from 90deg at 50% 50%, rgba(121,255,212,0.06), transparent 25%);
+      mix-blend-mode:screen;opacity:0.9
+    }
+    h1{
+      font-size:clamp(24px,4vw,42px);margin:0 0 12px 0;letter-spacing:0.12em;color:var(--accent);
+      text-transform:uppercase;display:flex;align-items:center;gap:14px
+    }
+    h1 .sig{font-size:12px;color:var(--muted);text-transform:none;letter-spacing:0}
+    p.lead{margin:0 0 18px 0;color:#9fb1c4;font-size:16px;line-height:1.45}
+    .mystery{
+      font-family: 'Times New Roman', Georgia, serif; font-size:20px;line-height:1.6;color:#e6eef6;
+      background:linear-gradient(90deg, rgba(121,255,212,0.06), rgba(121,255,212,0.02));
+      padding:18px;border-radius:12px;border:1px dashed rgba(121,255,212,0.04);
+      position:relative;overflow:hidden
+    }
+    .mystery::before{
+      content:'';position:absolute;inset:0;mix-blend-mode:overlay;opacity:0.06;background-image:linear-gradient(transparent, rgba(255,255,255,0.02));
+    }
+    .glitch{
+      display:inline-block;position:relative;
+    }
+    .glitch span{position:relative;display:inline-block}
+    .glitch span::before, .glitch span::after{
+      content:attr(data-text);position:absolute;left:0;top:0;opacity:0.85;
+      clip-path:polygon(0 0,100% 0,100% 45%,0 45%);
+    }
+    .glitch span::before{transform:translate(2px,-2px);color:rgba(121,255,212,0.8);mix-blend-mode:screen;opacity:0.6}
+    .glitch span::after{transform:translate(-1px,1px);color:rgba(255,100,150,0.06);mix-blend-mode:overlay;opacity:0.5}
+
+    .flicker{animation:flick 3s infinite}
+    @keyframes flick{
+      0%,100%{opacity:1;filter:brightness(1)}
+      7%{opacity:0.9}
+      9%{opacity:0.6;filter:brightness(0.9)}
+      12%{opacity:1}
+      40%{opacity:0.98}
+    }
+
+    .tiny{font-size:12px;color:var(--muted);margin-top:18px}
+    footer{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-size:12px;color:var(--muted)}
+
+    /* subtle drifting lines */
+    .lines{position:absolute;inset:0;pointer-events:none;opacity:0.06}
+    .lines::after{
+      content:'';position:absolute;left:-20%;top:-10%;width:140%;height:120%;background-image:radial-gradient(circle at 10% 20%, rgba(255,255,255,0.02), transparent 2%), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      transform:rotate(6deg);
+      background-size:100% 100%, 40px 40px;
+      animation:drift 18s linear infinite
+    }
+    @keyframes drift{from{transform:rotate(6deg) translateY(0)}to{transform:rotate(6deg) translateY(-40px)}}
+
+    /* eye styling */
+    .eye-wrap{position:absolute;right:28px;top:28px;width:120px;height:80px;display:flex;align-items:center;justify-content:center;pointer-events:auto}
+    .eye{width:88px;height:48px;position:relative}
+    .eye svg{width:100%;height:100%;display:block}
+
+    /* eyelid animation using mask */
+    .lid{transform-origin:50% 50%;transition:transform 250ms cubic-bezier(.2,.9,.3,1)}
+    .eye.closed .lid{transform:translateY(-60%)}
+
+    /* pupil dilation */\
+    .pupil{transition:transform 300ms ease}
+    .eye.closed .pupil{transform:scale(0.15)}
+
+    /* show/hide */
+    .eye.hidden{opacity:0;transform:scale(0.6);transition:opacity 450ms ease,transform 450ms ease}
+
+    /* small floating */
+    .eye.float{animation:floaty 6s ease-in-out infinite}
+    @keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+
+    /* responsive */
+    @media (max-width:520px){.card{padding:24px;border-radius:12px}.eye-wrap{right:14px;top:14px;width:88px;height:60px}}
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="card">
+      <div class="glow"></div>
+      <div class="lines"></div>
+
+      <h1 class="flicker"><span class="glitch"><span data-text="./Knox">./Knox</span></span> <span class="sig">— do not linger</span></h1>
+
+      <p class="lead">You will not find what you seek. This place keeps records — patient, precise, and sleepless.</p>
+
+      <div class="mystery flicker" id="message">
+        <p style="margin:0 0 8px 0">"Leave. Leave now. The ledger watches every footstep; the ink remembers more than you intended."</p>
+        <p style="margin:0;font-style:italic;color:var(--muted)">— A courteous warning from the quiet custodians</p>
+      </div>
+
+      <div class="tiny">If curiosity compels you still, know this: empty rooms echo with attention.</div>
+
+      <footer>
+        <div>— index: 0x00</div>
+        <div id="time">scanning…</div>
+      </footer>
+
+      <!-- eye element -->
+      <div class="eye-wrap">
+        <div class="eye float" id="watcher" aria-hidden="true">
+          <svg viewBox="0 0 100 56" preserveAspectRatio="xMidYMid meet">
+            <!-- sclera -->
+            <path d="M2,28 C20,2 80,2 98,28 C80,54 20,54 2,28 Z" fill="#f7fbff" opacity="0.06" />
+            <!-- iris -->
+            <g transform="translate(50,28)">
+              <circle class="iris" r="14" fill="none" stroke="rgba(121,255,212,0.18)" stroke-width="0" />
+              <circle class="pupil" r="8" fill="#0b0f12"/>
+            </g>
+            <!-- eyelid (top) -->
+            <path class="lid" d="M0,28 C20,4 80,4 100,28 L100,0 L0,0 Z" fill="#0b0f12" opacity="0.8" />
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const t = document.getElementById('time');
+    function makeTime(){
+      const d = new Date();
+      t.textContent = d.toUTCString();
+    }
+    makeTime(); setInterval(makeTime, 15000);
+
+    // eye behaviour: blink and occasionally hide/show
+    const watcher = document.getElementById('watcher');
+    let closed = false;
+    let hidden = false;
+
+    function blinkOnce(){
+      if(closed) return;
+      closed = true; watcher.classList.add('closed');
+      setTimeout(()=>{ watcher.classList.remove('closed'); closed=false }, 220 + Math.random()*260);
+    }
+
+    function randomBlink(){
+      blinkOnce();
+      // schedule next blink between 2s and 6s
+      setTimeout(randomBlink, 2000 + Math.random()*4000);
+    }
+
+    function occasionalHide(){
+      // toggle hide/show occasionally
+      hidden = !hidden;
+      if(hidden){ watcher.classList.add('hidden'); }
+      else { watcher.classList.remove('hidden'); }
+      // next toggle in 6s - 18s
+      setTimeout(occasionalHide, 6000 + Math.random()*12000);
+    }
+
+    // pupil micro-dilate on mouse move
+    watcher.addEventListener('mousemove', (e)=>{
+      const rect = watcher.getBoundingClientRect();
+      const cx = rect.left + rect.width/2; const cy = rect.top + rect.height/2;
+      const dx = (e.clientX - cx)/rect.width * 2; const dy = (e.clientY - cy)/rect.height * 2;
+      const pupil = watcher.querySelector('.pupil');
+      pupil.style.transform = `translate(${dx*6}px,${dy*4}px) scale(1.0)`;
+    });
+    watcher.addEventListener('mouseleave', ()=>{ const pupil=watcher.querySelector('.pupil'); pupil.style.transform='translate(0,0) scale(1)'; });
+
+    // small randomness start
+    setTimeout(randomBlink, 1200 + Math.random()*800);
+    setTimeout(occasionalHide, 4000 + Math.random()*5000);
+
+    // gentle hover: open and show
+    watcher.addEventListener('mouseenter', ()=>{ watcher.classList.remove('hidden'); watcher.classList.add('float'); });
+    watcher.addEventListener('click', ()=>{ // manual blink
+      blinkOnce();
+    });
+
+    // scatter a few ephemeral characters
+    const card = document.querySelector('.card');
+    function driftGlyph(){
+      const s = document.createElement('div');
+      s.textContent = ['·','•','░','▢','✦'][Math.floor(Math.random()*5)];
+      s.style.position='absolute';
+      s.style.left = Math.random()*80+10+'%';
+      s.style.top = Math.random()*80+10+'%';
+      s.style.opacity = '0.06';
+      s.style.fontSize = Math.random()*24+8+'px';
+      card.appendChild(s);
+      setTimeout(()=>{s.style.transition='opacity 2s';s.style.opacity=0;setTimeout(()=>s.remove(),2100)},1200);
+    }
+    setInterval(driftGlyph,9000);
+  </script>
+</body>
+</html>
